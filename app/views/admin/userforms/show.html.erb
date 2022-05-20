@@ -9,20 +9,16 @@
       <%= simple_form_for([:admin, @userform, @userform_field]) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
         <div class="form-inputs">
-
           <%= f.input :name %>
           <%= f.input :hint %>
           <%= f.input :default %>
           <%= f.input :placeholder %>
           <%= f.input :field_type, collection: ['Text', 'Email',  'TextArea', 'Select', 'MultiSelect'] %>
         </div>
-
         <div class="form-actions text-right">
           <%= f.button :submit, class: 'btn btn-primary' %>
         </div>
-
       <% end %>
     </div>
   </div>
@@ -36,10 +32,10 @@
           <th class="actions"></th>
         </tr>
       </thead>
-      <tbody data-controller="drag" data-drag-url="/admin/pages/:id/move">
-      <% @userform.userform_fields.each do |userform_field| %>
+      <tbody  data-controller="drag" data-drag-url="/admin/userforms/<%= @userform.id %>/userform_fields/:id/move/" >
+      <% @userform.userform_fields.order(position: :asc).each do |userform_field| %>
         <% if userform_field.persisted? %>
-          <tr>
+          <tr data-id="<%= userform_field.id %>">
               <td class='handle'><i class="bi bi-grip-vertical"></i></td>
               <td><%= userform_field.name %></td>
               <td><%= userform_field.field_type %></td>

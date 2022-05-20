@@ -156,6 +156,7 @@ Rails.application.routes.draw do
     end
     resources :articles
     resources :userforms do
+      resources :userform_submissions,  only: [:index]
       resources :userform_fields do
         member do
           patch :move

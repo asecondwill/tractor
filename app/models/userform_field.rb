@@ -22,5 +22,5 @@ class UserformField < ApplicationRecord
   belongs_to :userform
   validates :name, presence: true
   validates :field_type, presence: true
-  acts_as_list scope: :todo_list
+  acts_as_list scope: :userform
 end

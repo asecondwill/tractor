@@ -15,6 +15,23 @@ class Admin::UserformFieldsController < AdminController
     end
   end
 
+  def edit
+    @userform = @userform_field.userform
+  end
+
+  def update
+    @userform = @userform_field.userform
+    respond_to do |format|
+      if @userform_field.update(userform_field_params)
+        format.html { redirect_to admin_userform_path(@userform), notice: 'Item updated.' }
+        format.json { render :show, status: :ok, location: @userform }
+      else
+        format.html { render :edit , status: :unprocessable_entity}
+        format.json { render json: @userform.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @userform_field.destroy
     respond_to do |format|
