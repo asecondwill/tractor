@@ -14,6 +14,7 @@
         <thead>
           <tr>
             <th>Name</th>
+            <th>Submissionss</th>
             <th>Created</th>
             <th class="actions"></th>
           </tr>
@@ -23,7 +24,7 @@
           <tr>
 
             <td><%= link_to  userform.name, admin_userform_path(userform) %></td>
-            <td><%= link_to  "Submissions", admin_userform_userform_submissions_path(userform) %></td>
+            <td><%= link_to  userform.userform_submissions.count, admin_userform_userform_submissions_path(userform) %></td>
             <td><%= userform.created_at.to_s(:short_civillian) %></td>
             <td class="actions">
               <%= link_to "<i class='bi-pencil'></i>".html_safe, edit_admin_userform_path(userform) %>

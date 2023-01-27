@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_28_152249) do
+ActiveRecord::Schema.define(version: 2022_05_20_163538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,14 @@ ActiveRecord::Schema.define(version: 2022_03_28_152249) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "textfields", force: :cascade do |t|
+    t.string "default"
+    t.string "placeholder"
+    t.boolean "required", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "userform_fields", force: :cascade do |t|
     t.string "field_type"
     t.string "name"
@@ -157,6 +165,9 @@ ActiveRecord::Schema.define(version: 2022_03_28_152249) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "userform_id"
     t.integer "position"
+    t.integer "fieldable_id"
+    t.string "fieldable_type"
+    t.index ["fieldable_type", "fieldable_id"], name: "index_userform_fields_on_fieldable_type_and_fieldable_id"
     t.index ["userform_id"], name: "index_userform_fields_on_userform_id"
   end
 

@@ -29,16 +29,12 @@ class Page < ApplicationRecord
   acts_as_list
   has_ancestry cache_depth: true, counter_cache: true
   has_many :menuitems, as: :menuitemable
-
-
   friendly_id :title, use: :slugged
-
   validates :title, presence: true
-
   validates :template, presence: true
   has_rich_text :content
   has_rich_text :content_two
-
+  has_many :fields, as: :fieldable
 
   def should_generate_new_friendly_id?
     slug.blank?

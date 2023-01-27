@@ -15,12 +15,9 @@
 
     <%= f.simple_fields_for :custom_content, OpenStruct.new(@page.custom_content) do |field| %>
       <% @page.custom_fields.each do |custom_field| %>
-        <%= render "admin/shared/custom_field/#{custom_field[1][:type]}", field: field, custom_field: custom_field %>                
+        <%= render "admin/shared/custom_field/#{custom_field[1][:type]}", field: field, custom_field: custom_field %>
       <% end %>
     <% end %>
-
-
-
     <hr>
     <h2>Meta</h2>
     <%= f.input :description %>

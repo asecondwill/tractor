@@ -10,7 +10,7 @@ class Admin::UserformFieldsController < AdminController
     @userform_field = @userform.userform_fields.new(userform_field_params)
     if @userform_field.save
        redirect_to admin_userform_path(@userform_field.userform), notice: "Item created."
-    else
+    else      
        render template: 'admin/userforms/show', status: :unprocessable_entity
     end
   end
@@ -27,7 +27,7 @@ class Admin::UserformFieldsController < AdminController
         format.json { render :show, status: :ok, location: @userform }
       else
         format.html { render :edit , status: :unprocessable_entity}
-        format.json { render json: @userform.errors, status: :unprocessable_entity }
+        format.json { render json: @userform_field.errors, status: :unprocessable_entity }
       end
     end
   end
